@@ -1,42 +1,51 @@
 set nocompatible   
-" Vundle configuration
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
 
-" For GitHub repos, you specify plugins using the
-" 'user/repository' format
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'altercation/vim-colors-solarized'
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'TaskList.vim' 
-Plugin 'taglist.vim'
-Plugin 'minibufexpl.vim'
-"  All plugins must be added before the following line
-call vundle#end()
-filetype plugin indent on
+Plug 'tpope/vim-fugitive'
 
-" Text display enhancements
+Plug 'vim-scripts/taglist.vim'
+
+Plug 'fholgado/minibufexpl.vim'
+
+Plug 'tpope/vim-surround'
+
+" Syntax plugin
+Plug 'elixir-lang/vim-elixir'
+Plug 'pangloss/vim-javascript'
+
+" Themes
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+
+" Tab settings
 set tabstop=8
+set softtabstop=2
+set shiftwidth=2
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+
 set autoindent
-set omnifunc=syntaxcomplete#Complete
-syntax on
 set number
+set showmatch " highlight matching [{()}]
+:set guifont=Monaco:h12   
+
+set omnifunc=syntaxcomplete#Complete
+
 " Taglist
 let $Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
-" Solarized Settings
-if has('gui_running')
+" NERDTree settings
+map <C-n> :NERDTreeToggle<CR>
+" Solarized settings
+if has('gui_macvim')
     set background=dark
-else
-    set background=dark
-    let g:solarized_termcolors=16
+else 
+    set background=light
 endif
 colorscheme solarized
 call togglebg#map("")
-
